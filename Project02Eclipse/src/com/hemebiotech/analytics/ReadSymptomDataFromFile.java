@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,9 +22,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
-	
+
+
+
 	@Override
-	public List<String> GetSymptoms() {
+	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if (filepath != null) {
@@ -43,5 +46,16 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		return result;
 	}
+
+	@Override
+	public HashMap<String, Integer> countSymptoms(List<String> symptoms) {
+		return null;
+	}
+
+	@Override
+	public void exportSymptoms(HashMap<String, Integer> counters) {
+
+	}
+
 
 }
