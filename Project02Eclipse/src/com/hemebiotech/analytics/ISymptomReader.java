@@ -1,8 +1,10 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Anything that will read symptom data from a source
@@ -20,6 +22,7 @@ public interface ISymptomReader {
 	 */
 	List<String> getSymptoms ();
 	HashMap<String, Integer> countSymptoms(ArrayList<String> symptoms);
+	void exportSymptoms (HashMap<String, Integer> symptomsAnalytics) throws IOException;
 
-	void exportSymptoms (HashMap<String, Integer> counters);
 }
+

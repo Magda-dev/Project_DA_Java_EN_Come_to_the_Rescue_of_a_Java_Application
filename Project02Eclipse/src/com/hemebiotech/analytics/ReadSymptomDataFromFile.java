@@ -2,10 +2,9 @@ package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Simple brute force implementation
@@ -14,7 +13,7 @@ import java.util.List;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 	private String filepath;
 	public List<String> symptoms;
-
+	public HashMap <String, Integer> symptomsAnalytics;
 	
 	/**
 	 * 
@@ -49,30 +48,33 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 
 	@Override
-	public HashMap<String, Integer> countSymptoms(List<String> symptoms) {
+	public HashMap<String, Integer> countSymptoms(ArrayList<String> symptoms) {
 		this.symptoms = symptoms;
-		HashMap<String, Integer> symptomsAnalytics = new HashMap<>();
+		HashMap<String, Integer> symptomsAnalytics = new HashMap<>(); //caste
 		for( String line : symptoms) {
-			System.out.println( "1" +line );
 			if (symptomsAnalytics.containsKey(line)) {
 				symptomsAnalytics.get(line);
 				symptomsAnalytics.merge(line, 1, Integer::sum);
-				System.out.println("2" + symptomsAnalytics);
 			}
 			else {
 				symptomsAnalytics.put(line, 1);
-				System.out.println("3" +symptomsAnalytics);
 			}
 		}
 		return symptomsAnalytics;
 	}
 
-
-
-
 	@Override
-	public void exportSymptoms(HashMap<String, Integer> analyticsResult) {
-
+	public void exportSymptoms(HashMap<String, Integer> symptomsAnalytics) throws IOException {
+		final TreeMap<String, Integer> exportFile = new TreeMap<>();
+		for(HashMap.Entry<String, Integer> element : symptomsAnalytics.entrySet()) {
+			exportFile.put(element.getKey(), element.getValue());
+		}
+		exportFile.putAll(symptomsAnalytics);
+		exportFile.putAll(symptomsAnalytics);
+		System.out.println(exportFile);
+		FileWriter writer = new FileWriter ("result.out");
+		writer.write(String.valueOf(exportFile));
+		writer.close();
 	}
-
 }
+
