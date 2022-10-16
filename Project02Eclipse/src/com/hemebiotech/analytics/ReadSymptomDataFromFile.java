@@ -12,8 +12,9 @@ import java.util.List;
  *
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
-
 	private String filepath;
+	public List<String> symptoms;
+
 	
 	/**
 	 * 
@@ -49,13 +50,29 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	@Override
 	public HashMap<String, Integer> countSymptoms(List<String> symptoms) {
-		return null;
+		this.symptoms = symptoms;
+		HashMap<String, Integer> symptomsAnalytics = new HashMap<>();
+		for( String line : symptoms) {
+			System.out.println( "1" +line );
+			if (symptomsAnalytics.containsKey(line)) {
+				symptomsAnalytics.get(line);
+				symptomsAnalytics.merge(line, 1, Integer::sum);
+				System.out.println("2" + symptomsAnalytics);
+			}
+			else {
+				symptomsAnalytics.put(line, 1);
+				System.out.println("3" +symptomsAnalytics);
+			}
+		}
+		return symptomsAnalytics;
 	}
+
+
+
 
 	@Override
-	public void exportSymptoms(HashMap<String, Integer> counters) {
+	public void exportSymptoms(HashMap<String, Integer> analyticsResult) {
 
 	}
-
 
 }

@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public interface ISymptomReader {
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
 	 */
 	List<String> getSymptoms ();
-	HashMap<String, Integer> countSymptoms(List<String> symptoms);
+	HashMap<String, Integer> countSymptoms(ArrayList<String> symptoms);
+
 	void exportSymptoms (HashMap<String, Integer> counters);
 }

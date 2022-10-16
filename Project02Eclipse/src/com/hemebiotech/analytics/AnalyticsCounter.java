@@ -12,7 +12,7 @@ public class AnalyticsCounter {
 
 		List<String> symptoms = readSymptomData.getSymptoms();
 		// compter les symptomes
-
+		HashMap<String, Integer> symptomsAnalytics = readSymptomData.countSymptoms();
 
 		//Exporter les symptomes
 		//donner un nom de fichier en parametre (à formatter)
